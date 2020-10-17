@@ -1,0 +1,85 @@
+@import "~styles/_variables";
+    
+.message
+    $self: &
+    display: flex
+    margin: 10px
+
+    &__content
+        display: flex
+        flex-direction: row
+        position: relative
+
+    &__avatar 
+        display: flex 
+        flex-direction: column-reverse
+        img
+            height: 33px
+            width: 33px
+            border-radius: 50%
+            margin-right: 10px
+            margin-bottom: 18px
+
+    &__bubble
+        background: $blue 
+        border-radius: 12px 12px 12px 0px   
+        padding: 15px
+        margin-bottom: 4px
+        max-width: 480px
+
+    &__text
+        color: #ffffff
+        font-size: 14px 
+        line-height: 20px
+
+    &__date
+        font-size: 12px
+        opacity: 0.5 
+
+    &__info 
+    
+
+    &__attachments 
+        display: flex 
+        &-item 
+            margin-right: 5px
+            cursor: pointer
+            img 
+                height: 50px
+                width: 50px
+                border-radius: 5px     
+
+    &__readed-status
+        position: absolute
+        left: -20px
+        bottom: 5px   
+
+
+    &--isme
+        display: flex 
+        flex-direction: row-reverse
+
+        #{$self}__content
+            display: flex 
+            flex-direction: row-reverse
+
+        #{$self}__avatar
+            img 
+                margin-left: 10px
+                margin-bottom: 5px
+
+        #{$self}__info 
+            position: relative
+            #{$self}__date 
+                position: absolute
+                right: 0px
+                     
+
+        #{$self}__bubble
+            border-radius: 12px 12px 0px 12px
+            background: #ffffff
+            border: 1px solid #ececec
+
+            #{$self}__text
+                color: $black
+
