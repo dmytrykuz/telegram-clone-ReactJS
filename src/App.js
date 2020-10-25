@@ -7,7 +7,7 @@ function App() {
     <div className="app">
       {/* <Auth /> */}
       {/* <Home /> */}
-      <Route exact path={["/", "/login"]} render={() => <Auth />} />
+      <Route exact path={["/", "/login", "/register"]} render={() => <Auth />} />
       <Route exact path={"/home"} render={() => <Home />} />
     </div>
   );
