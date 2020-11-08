@@ -55,17 +55,17 @@ const RegisterForm = (props) => {
               validateStatus={
                 !touched.email ? "" : errors.email ? "error" : "success"
               }
-              rules={[
-                {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-                },
-                {
-                  required: true,
-                  message: "Please input your E-mail!",
-                },
-              ]}
-              help="qweqwewqeqweqweqwe"
+              // rules={[
+              //   {
+              //     type: "email",
+              //     message: "The input is not valid E-mail!",
+              //   },
+              //   {
+              //     required: true,
+              //     message: "Please input your E-mail!",
+              //   },
+              // ]}
+              // help="qweqw"
               hasFeedback
             >
               <Input
