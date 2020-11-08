@@ -8,9 +8,23 @@ import notReadedSvg from "assets/svg/notreaded.svg";
 
 import "./Message.sass";
 
-const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => {
+const Message = ({
+  avatar,
+  user,
+  text,
+  date,
+  isMe,
+  isReaded,
+  isTyping,
+  attachments,
+}) => {
   return (
-    <div className={classNames("message", { "message--isme": isMe })}>
+    <div
+      className={classNames("message", {
+        "message--isme": isMe,
+        "message--is-typing": isTyping,
+      })}
+    >
       <div className="message__content">
         <div className="message__readed-status">
           {isMe && isReaded ? (
@@ -32,7 +46,14 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => {
         </div>
         <div className="message__info">
           <div className="message__bubble">
-            <p className="message__text">{text}</p>
+            {text && <p className="message__text">{text}</p>}
+            {isTyping && (
+              <div className="message__typing">
+                <span />
+                <span />
+                <span />
+              </div>
+            )}
           </div>
           <div className="message__attachments">
             {attachments &&
@@ -42,12 +63,14 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments }) => {
                 </div>
               ))}
           </div>
-          <span className="message__date">
-            {formatDistanceToNow(new Date(date), {
-              addSuffix: true,
-              locale: ru,
-            })}
-          </span>
+          {date && (
+            <span className="message__date">
+              {formatDistanceToNow(new Date(date), {
+                addSuffix: true,
+                locale: ru,
+              })}
+            </span>
+          )}
         </div>
       </div>
     </div>
@@ -64,6 +87,7 @@ Message.propTypes = {
   text: PropTypes.string,
   date: PropTypes.object,
   attachments: PropTypes.array,
+  isTyping: PropTypes.bool,
 };
 
 export default Message;

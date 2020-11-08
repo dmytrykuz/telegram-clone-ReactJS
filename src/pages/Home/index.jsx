@@ -36,6 +36,8 @@ const Home = (props) => {
           },
         ]}
       />
+
+      <Message avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png" isTyping/>
     </section>
   );
 };
