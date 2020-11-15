@@ -1,0 +1,83 @@
+@import "~styles/variables"
+
+.dialogs
+    width: 320px
+    &__item
+        $item: &
+        margin: 15px
+        padding: 8px 10px 
+        display: flex
+        background-color: #eeeeee
+        &-avatar   
+            position: relative 
+            flex-basis: 40px
+            margin-right: 10px
+            height: 40px
+            width: 40px
+            img 
+                height: 100%
+                width: 100%
+                border-radius: 50%
+
+        &--online
+            #{$item}-avatar 
+                &::before 
+                    display: block
+                    position: absolute
+                    right: -1px
+                    bottom: -1px
+                    content: ''
+                    background-color: $green 
+                    border-radius: 50% 
+                    height: 15px
+                    width: 15px
+                    border: 3px solid #fff
+
+
+
+        &-info
+            display: flex 
+            flex-direction: column
+            justify-content: center
+            flex: 1
+            &-top 
+                display: flex
+                margin-bottom: 5px
+                b 
+                    font-weight: 500
+                    font-size: 14px  
+                    flex: 1  
+                span 
+                    opacity: 0.6  
+            &-bottom 
+                position: relative
+                p 
+                    opacity: 0.6
+                    text-overflow: ellipsis
+                    overflow: hidden
+                    width: 180px
+                    height: 1.2em
+                    white-space: nowrap
+                &-count 
+                    position: absolute
+                    right: 0
+                    bottom: 0
+                    background: #f46b6b
+                    color: #fff
+                    font-weight: bold
+                    height: 18px
+                    width: 18px
+                    border-radius: 30px   
+                    text-align: center
+                    font-size: 12px
+                    line-height: 16px
+                    &--medium
+                        width: 20px
+                    &--large
+                        width: 30px 
+                    &--max
+                        width: 35px    
+                .message__readed-status
+                    bottom: 0 
+                    left: auto 
+                    right: 0        
