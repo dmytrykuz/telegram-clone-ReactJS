@@ -1,47 +1,57 @@
 import React from "react";
 
-import { Message, DialogItem } from "components";
+import { Message, DialogsList } from "components";
 
 import "./Home.sass";
 
 const Home = (props) => {
   return (
     <section className="home">
-      <div className="dialogs">
-        <DialogItem
-          isOnline={true}
-          user={{
-            fullname: "Федор Достоевский",
-            avatar:
-              "https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png",
-          }}
-          message={{
-            text: "Мы все свидетельствуем Вам глубочайшее наше",
-            isMe: true,
-            isReaded: true,
-            created_at: new Date(),
-          }}
-          unreaded={4}
-        />
-      </div>
+      <Message
+        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
+        text="Hello, mutterfucker :DDD"
+        date="Mon Oct 12 2020 11:10:09"
+      />
 
-      {/* <Dialogs
-        items={[
-          {
-            user: {
-              fullname: "Федор Достоевский",
-              avatar: null,
-            },
-            message: {
-              text: "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши
-                     ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша",
-              isMe: true,
+      {/* <div className="dialogs">
+        <DialogsList
+          userId={0}
+          items={[
+            {
+              _id: Math.random(),
+              user: {
+                _id: 1,
+                fullname: "Федор Достоевский",
+                avatar:
+                  "https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png",
+                isOnline: true,
+                isMe: true,
+              },
+              text:
+                "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваш",
               isReaded: false,
-              created_at: new Date(),
+              unreaded: 4,
+              created_at: "Wed Nov 17 2020 20:45:04",
             },
-          },
-        ]}
-      ></Dialogs> */}
+            {
+              _id: Math.random(),
+              user: {
+                _id: 1,
+                fullname: "Ilon Mask",
+                avatar:
+                  "https://e3.365dm.com/18/09/2048x1152/skynews-elon-musk-weed_4414031.jpg",
+                isOnline: false,
+                isMe: true,
+              },
+              text:
+                "Привет, как дела?",
+              isReaded: false,
+              unreaded: 0,
+              created_at: "Wed Nov 18 2020 20:45:04",
+            },
+          ]}
+        ></DialogsList>
+      </div> */}
 
       {/* <Message
         avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
