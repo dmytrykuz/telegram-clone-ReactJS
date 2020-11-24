@@ -9,7 +9,7 @@ const Home = (props) => {
     <section className="home">
       <Message
         avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
+        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
         date="Mon Oct 12 2020 11:10:09"
       />
 

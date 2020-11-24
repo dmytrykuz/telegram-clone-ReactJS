@@ -54,7 +54,42 @@
         left: -10px
         bottom: 5px   
 
+    &--isAudio
+        audio 
+            display: none
+        #{$self}__bubble
+            position: relative
+            width: 250px
+            overflow: hidden
 
+        #{$self}__audio
+            &-info 
+                position: relative
+                display: flex 
+                align-items: center
+                justify-content: space-between
+            &-btn 
+                button
+                    height: 28px
+                    width: 28px
+                    border-radius: 50%
+                    border: none
+                    background: #0f3997
+                    cursor: pointer
+                    img 
+                        height: 11px
+            &-duration 
+                color: #fff 
+                font-weight: 500
+                opacity: .6
+                font-size: 12px
+            &-progress 
+                position: absolute
+                left: 0
+                top: 0
+                background-color: #418fff
+                height: 100%  
+                transition: width 0.5s ease 
     &--isme
         display: flex 
         flex-direction: row-reverse
