@@ -7,20 +7,14 @@ import "./Home.sass";
 const Home = (props) => {
   return (
     <section className="home">
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      {/* <div className="dialogs">
+      <div className="dialogs">
         <DialogsList
           userId={0}
           items={[
             {
-              _id: Math.random(),
+              _id: "d41d8cd98f00b204e9800998ecf8427e",
               user: {
-                _id: 1,
+                _id: "d41d8cd98f00b204e9800998ecf8427e",
                 fullname: "Федор Достоевский",
                 avatar:
                   "https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png",
@@ -34,12 +28,11 @@ const Home = (props) => {
               created_at: "Wed Nov 17 2020 20:45:04",
             },
             {
-              _id: Math.random(),
+              _id: "f13496fa2121497ca0df407b908c2dc9",
               user: {
-                _id: 1,
-                fullname: "Ilon Mask",
-                avatar:
-                  "https://e3.365dm.com/18/09/2048x1152/skynews-elon-musk-weed_4414031.jpg",
+                _id: "f13496fa2121497ca0df407b908c2dc9",
+                fullname: "Mask Ilon",
+                avatar: null,
                 isOnline: false,
                 isMe: true,
               },
@@ -51,12 +44,18 @@ const Home = (props) => {
             },
           ]}
         ></DialogsList>
-      </div> */}
+      </div>
 
       {/* <Message
         avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
         text="Hello!"
         date="Mon Oct 11 2020 11:10:09"
+      />
+
+      <Message
+        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
+        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
+        date="Mon Oct 12 2020 11:10:09"
       />
 
       <Message
