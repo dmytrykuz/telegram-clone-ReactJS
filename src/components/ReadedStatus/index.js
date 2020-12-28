@@ -6,19 +6,21 @@ import notReadedSvg from "assets/svg/notreaded.svg";
 const ReadedStatus = ({ isMe, isReaded }) => {
   return (
     <div className="message__readed-status">
-      {isMe && isReaded ? (
-        <img
-          className="message__icon-readed"
-          src={readedSvg}
-          alt="Readed icon"
-        />
-      ) : (
-        <img
-          className="message__icon-readed message__icon-readed--no"
-          src={notReadedSvg}
-          alt="Not Readed icon"
-        />
-      )}
+      {isMe ? (
+        isReaded ? (
+          <img
+            className="message__icon-readed"
+            src={readedSvg}
+            alt="Readed icon"
+          />
+        ) : (
+          <img
+            className="message__icon-readed message__icon-readed--no"
+            src={notReadedSvg}
+            alt="Not Readed icon"
+          />
+        )
+      ) : null}
     </div>
   );
 };

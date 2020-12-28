@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "76d80224611fc919a5d54f0ff9fba446",
+    "user": {
+      "_id": "76d80224611fc919a5d54f0ff9fba446",
+      "fullname": "Corina Nguyen",
+      "avatar": null,
+      "isOnline": true,
+      "isMe": true
+    },
+    "text": "Ea ullamco minim sit aliqua sunt cillum ipsum proident adipisicing duis.",
+    "isReaded": true,
+    "unreaded": 0,
+    "created_at": "Tue Sep 25 1973 01:15:53 GMT+0300 (за східноєвропейським стандартним часом)"
+  },
+  {
+    "_id": "aef6935e4140dab23a04f6e0fe2846c6",
+    "user": {
+      "_id": "aef6935e4140dab23a04f6e0fe2846c6",
+      "fullname": "Danielle Chapman",
+      "avatar": null,
+      "isOnline": true,
+      "isMe": true
+    },
+    "text": "Commodo voluptate tempor aliquip aliquip consequat laborum dolore occaecat aliquip fugiat ipsum Lorem.",
+    "isReaded": true,
+    "unreaded": 7,
+    "created_at": "Sun Apr 23 2017 15:05:15 GMT+0300 (за східноєвропейським літнім часом)"
+  },
+  {
+    "_id": "7eb3817493433c6424ffcfccb8f9f9f9",
+    "user": {
+      "_id": "7eb3817493433c6424ffcfccb8f9f9f9",
+      "fullname": "Frye Nieves",
+      "avatar": null,
+      "isOnline": false,
+      "isMe": true
+    },
+    "text": "Eu irure ullamco et esse nostrud ut occaecat consectetur.",
+    "isReaded": false,
+    "unreaded": 8,
+    "created_at": "Fri Mar 25 1977 21:43:08 GMT+0300 (за східноєвропейським стандартним часом)"
+  },
+  {
+    "_id": "0f338b108686378a018d5f0454f9879a",
+    "user": {
+      "_id": "0f338b108686378a018d5f0454f9879a",
+      "fullname": "Larson Ingram",
+      "avatar": null,
+      "isOnline": true,
+      "isMe": true
+    },
+    "text": "Excepteur in non velit occaecat eiusmod cupidatat.",
+    "isReaded": true,
+    "unreaded": 6,
+    "created_at": "Wed Jan 02 2002 04:43:50 GMT+0200 (за східноєвропейським стандартним часом)"
+  },
+  {
+    "_id": "b843480c48148e021bc1bf4f514e94b6",
+    "user": {
+      "_id": "b843480c48148e021bc1bf4f514e94b6",
+      "fullname": "Obrien Baker",
+      "avatar": null,
+      "isOnline": false,
+      "isMe": false
+    },
+    "text": "Aliqua labore duis duis in sint proident laboris excepteur veniam do quis elit duis ipsum.",
+    "isReaded": false,
+    "unreaded": 3,
+    "created_at": "Fri Apr 16 1993 09:46:06 GMT+0300 (за східноєвропейським літнім часом)"
+  }
+]

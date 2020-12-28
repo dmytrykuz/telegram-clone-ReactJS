@@ -1,103 +1,59 @@
 import React from "react";
+import { Messages, Status, ChatInput } from "components";
+import { DialogsList } from "containers";
+import {
+  TeamOutlined,
+  FormOutlined,
+  EllipsisOutlined,
+} from "@ant-design/icons";
+import { Input, Button } from "antd";
 
-import { Message, DialogsList } from "components";
+import dialogsJSON from "./../../dialogs.json";
 
 import "./Home.sass";
 
 const Home = (props) => {
   return (
     <section className="home">
-      <div className="dialogs">
-        <DialogsList
-          userId={0}
-          items={[
-            {
-              _id: "d41d8cd98f00b204e9800998ecf8427e",
-              user: {
-                _id: "d41d8cd98f00b204e9800998ecf8427e",
-                fullname: "Федор Достоевский",
-                avatar:
-                  "https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png",
-                isOnline: true,
-                isMe: true,
-              },
-              text:
-                "Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваш",
-              isReaded: false,
-              unreaded: 4,
-              created_at: "Wed Nov 17 2020 20:45:04",
-            },
-            {
-              _id: "f13496fa2121497ca0df407b908c2dc9",
-              user: {
-                _id: "f13496fa2121497ca0df407b908c2dc9",
-                fullname: "Mask Ilon",
-                avatar: null,
-                isOnline: false,
-                isMe: true,
-              },
-              text:
-                "Привет, как дела?",
-              isReaded: false,
-              unreaded: 0,
-              created_at: "Wed Nov 18 2020 20:45:04",
-            },
-          ]}
-        ></DialogsList>
+      <div className="chat">
+        <div className="chat__sidebar">
+          <div className="chat__sidebar-header">
+            <div>
+              <TeamOutlined />
+              <span>Список діалогів</span>
+            </div>
+            <Button type="link" icon={<FormOutlined />} />
+          </div>
+          {/* //sidebar-search was be here */}
+          <div className="chat__sidebar-dialogs">
+            <DialogsList
+              userId={0}
+              items={dialogsJSON}
+            />
+          </div>
+        </div>
+        <div className="chat__dialog">
+          <div className="chat__dialog-header">
+            <div></div>
+            <div className="chat__dialog-header-center">
+              <b className="chat__dialog-header-username">Ilon Mask</b>
+              <div className="chat__dialog-header-status">
+                <Status online={true} />
+              </div>
+            </div>
+            <Button
+              type="link"
+              icon={<EllipsisOutlined style={{ fontSize: "22px" }} />}
+            />
+          </div>
+          <div className="chat__dialog-messages">
+            <Messages />
+          </div>
+          <div className="chat__dialog-input">
+            <ChatInput />
+          </div>
+        </div>
       </div>
-
-      {/* <Message
-        avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
-        text="Hello!"
-        date="Mon Oct 11 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe={true}
-        isReaded={true}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Fuck off bitch"
-        date="Mon Oct 12 2020 11:10:09"
-        attachments={[
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=1&nature,water",
-          },
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=2&nature,water",
-          },
-        ]}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe="true"
-        attachments={[
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=1&nature,water",
-          },
-        ]}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        isTyping
-      /> */}
     </section>
   );
 };
