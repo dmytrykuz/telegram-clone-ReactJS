@@ -1,36 +1,52 @@
 .chat-input
+  display: flex
+  position: relative
+  padding: 20px
+  border-top: 1px solid #f7f7f7
+
+  &__smile-btn, &__actions
     display: flex
-    position: relative
-    padding: 20px
-    border-top: 1px solid #f7f7f7
+    align-items: center
 
-    &__smile-btn, &__actions
-        display: flex
-        align-items: center
+  &__smile-btn
+    margin-right: 20px
+    .anticon
+      font-size: 20px
 
-    &__smile-btn
-        margin-right: 20px
+  &__actions
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 70px
+    margin-left: 20px
 
-    &__actions
-        justify-content: space-between
-        width: 70px
-        margin-left: 20px
+    .anticon
+      cursor: pointer
+      color: #111
+      background-color: #fff
+      font-size: 20px
+      opacity: 0.5
+      transition: opacity 0.3s ease-in-out
+      &:hover
+        color: #389fff
+        opacity: 1
 
-    span.anticon
-        color: #111
-        font-size: 20px
-        opacity: 0.5
-        cursor: pointer
-        transition: opacity 0.3s ease-in-out
-        &:hover
-            color: #389fff
-            opacity: 1
+    &-upload-btn
+      &:hover
+        button, .anticon
+          opacity: 1
+          color: #389fff
 
-    input
-        padding: 6px 11px 8px
-        font-size: 14px
-        &:focus
-            box-shadow: none
+  input
+    padding: 6px 11px 8px
+    font-size: 14px
+    &:focus
+      box-shadow: none
 
-    span, input
-        background-color: #f7f8f9
+  &__emoji-picker
+    position: absolute
+    bottom: 80px
+    z-index: 1
+
+//span, input
+//    background-color: #f7f8f9

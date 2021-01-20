@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { dialogsActions } from "redux/actions";
 import { DialogsList as BaseDialogs } from "components";
 
-const DialogsList = ({ fetchAllDialogs, items, userId }) => {
+
+const DialogsList = ({fetchAllDialogsId, currentDialogId, setCurrentDialogId, items, userId}) => {
   const [inputValue, setValue] = useState("");
   const [filtred, setFiltredItems] = useState(Array.from(items));
 
@@ -18,9 +19,11 @@ const DialogsList = ({ fetchAllDialogs, items, userId }) => {
     setValue(value);
   };
 
+  // const onSelectDialog = () => {};
+
   useEffect(() => {
-    if (!items.length) {
-      fetchAllDialogs();
+    if(!items.length) {
+      fetchAllDialogsId();
     } else {
       setFiltredItems(items);
     }
@@ -32,8 +35,10 @@ const DialogsList = ({ fetchAllDialogs, items, userId }) => {
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
+      onSelectDialog={setCurrentDialogId}
+      currentDialogId={currentDialogId}
     />
   );
 };
 
-export default connect(({ dialogs }) => dialogs, dialogsActions)(DialogsList);
+export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsList);

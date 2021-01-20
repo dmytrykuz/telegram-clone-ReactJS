@@ -5,7 +5,15 @@ import { Input, Empty } from "antd";
 
 import "./DialogsList.sass";
 
-const DialogsList = ({ items, userId, onSearch, inputValue }) => {
+
+const DialogsList = ({
+  items,
+  userId,
+  onSearch,
+  inputValue,
+  currentDialogId,
+  onSelectDialog,
+}) => {
   return (
     <div className="dialogs-list">
       <div className="dialogs-list__sidebar-search">
@@ -19,13 +27,18 @@ const DialogsList = ({ items, userId, onSearch, inputValue }) => {
       {items.length ? (
         orderBy(items, ["created_at"], ["desc"]).map((item) => (
           <DialogItem
+            onSelect={onSelectDialog}
             key={item._id}
             isMe={item.user._id === userId}
+            currentDialogId={currentDialogId}
             {...item}
           />
         ))
       ) : (
-        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Повідомлень не знайдено"/>
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Повідомлень не знайдено"
+        />
       )}
     </div>
   );

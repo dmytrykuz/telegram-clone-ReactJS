@@ -6,16 +6,28 @@ import {
   SendOutlined,
 } from "@ant-design/icons";
 import { Input, Button } from "antd";
+import { UploadField } from '@navjobs/upload';
+import { Picker } from 'emoji-mart'
 
 import "./ChatInput.sass";
 
+
 const ChatInput = () => {
   const [value, setValue] = useState("");
+  const [emojiPickerVisible, setEmojiPicker] = useState("");
+
+  const toggleEmojiPicker = () => {
+    setEmojiPicker(!emojiPickerVisible);
+  };
 
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
-        <Button type="link" icon={<SmileOutlined />} />
+        {emojiPickerVisible &&
+        <div className="chat-input__emoji-picker">
+          <Picker set='apple'/>
+        </div>}
+        <Button onClick={toggleEmojiPicker} type="link" icon={<SmileOutlined/>}/>
       </div>
       <Input
         onChange={(e) => setValue(e.target.value)}
@@ -26,11 +38,21 @@ const ChatInput = () => {
         // style={{ width: 100%, margin: "0 10px" }}
       />
       <div className="chat-input__actions">
-        <Button type="link" icon={<LinkOutlined />} />
+        <UploadField
+          onFiles={files => console.log(files)}
+          containerProps={{
+            className: 'chat-input__actions-upload-btn'
+          }}
+          uploadProps={{
+            accept: '.jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.txt,.rtf',
+            multiple: "multiple",
+          }}>
+          <Button type="link" icon={<LinkOutlined/>}/>
+        </UploadField>
         {value ? (
-          <Button type="link" icon={<SendOutlined />} />
+          <Button type="link" icon={<SendOutlined/>}/>
         ) : (
-          <Button type="link" icon={<AudioOutlined />} />
+          <Button type="link" icon={<AudioOutlined/>}/>
         )}
       </div>
     </div>

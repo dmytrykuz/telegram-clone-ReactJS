@@ -1,132 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Empty } from "antd";
+import { Empty, Spin } from "antd";
+import classNames from "classnames";
 
 import { Message } from "../";
+import "./Messages.sass";
 
-const Messages = ({ items }) => {
-  return items ? (
-    <div>
-      <Message
-        avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
-        text="Hello!"
-        date="Mon Oct 11 2020 11:10:09"
-        isMe={false}
-      />
 
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe={true}
-        isReaded={true}
-      />
-
-      <Message
-        avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
-        text="Hello!"
-        date="Mon Oct 11 2020 11:10:09"
-        isMe={false}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe={true}
-        isReaded={true}
-      />
-
-      <Message
-        avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
-        text="Hello!"
-        date="Mon Oct 11 2020 11:10:09"
-        isMe={false}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe={true}
-        isReaded={true}
-      />
-
-      <Message
-        avatar="https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png"
-        text="Hello!"
-        date="Mon Oct 11 2020 11:10:09"
-        isMe={false}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        audio="https://cdn-static.namobilu.com/u/ring/f/563/088/nurminskij_ment_na_menya_gazuet.mp3"
-        date="Mon Oct 12 2020 11:10:09"
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Hello, mutterfucker :DDD"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe={true}
-        isReaded={true}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        text="Fuck off bitch"
-        date="Mon Oct 12 2020 11:10:09"
-        attachments={[
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=1&nature,water",
-          },
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=2&nature,water",
-          },
-        ]}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        date="Mon Oct 12 2020 11:10:09"
-        isMe="true"
-        attachments={[
-          {
-            filename: "image.jpg",
-            url: "https://source.unsplash.com/100x100/?random=1&nature,water",
-          },
-        ]}
-      />
-
-      <Message
-        avatar="https://cdn.iconscout.com/icon/free/png-512/avatar-369-456321.png"
-        isTyping
-      />
+const Messages = ({blockRef, isLoading, items}) => {
+  return (
+    <div ref={blockRef} className={classNames("messages", {"messages--loading": isLoading})}>
+      {
+        isLoading
+          ? (<Spin size="large" tip="Завантаження..."/>)
+          : items && !isLoading
+          ? (items.length > 0
+            ? (<div>{items.map(item => (<Message key={item._id} {...item}/>))}</div>)
+            : (<Empty description="Немає повідомлень"/>))
+          : (<Empty description="Відкрийте діалог"/>)
+      }
     </div>
-  ) : (
-    <Empty description="Немає повідомлень" />
-  );
+  )
 };
 
 Messages.propTypes = {

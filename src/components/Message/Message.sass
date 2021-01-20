@@ -1,4 +1,4 @@
-@import "~styles/_variables";
+@import "~styles/_variables"
     
 .message
     $self: &
@@ -13,12 +13,14 @@
     &__avatar 
         display: flex 
         flex-direction: column-reverse
-        img
-            height: 33px
-            width: 33px
+        .avatar
+            height: 34px
+            width: 34px
+            font-size: 20px
             border-radius: 50%
-            margin-right: 10px
-            margin-bottom: 16px
+            margin-right: 8px
+            margin-bottom: 2px
+            line-height: 32px
 
     &__bubble
         background: $blue 
@@ -154,4 +156,4 @@
             &-item
                 img 
                     height: 150px
-                    width: 150px            
+                    width: 150px
