@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Time, ReadedStatus, Avatar } from "../";
+import { ReadedStatus, Avatar } from "../";
 import { format, isToday, isThisYear } from "date-fns";
 
 import "./DialogItem.sass";

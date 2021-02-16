@@ -1,37 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Form, Input, Checkbox } from "antd";
-import {
-  UserOutlined,
-  LockOutlined,
-  MailOutlined,
-  QuestionCircleOutlined,
-  InfoCircleTwoTone,
-} from "@ant-design/icons";
+import { Form, Input } from "antd";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 
 import { Wrapper, Button } from "components";
 import { validateField } from "utils/helpers";
-
 
 const LoginForm = (props) => {
   const {
     values,
     touched,
     errors,
-    isSubmitting,
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
-    dirty,
     isValid,
+    isSubmitting,
   } = props;
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-
   return (
     <div>
       <div className="auth__title">
@@ -41,31 +27,30 @@ const LoginForm = (props) => {
       <Wrapper>
         <Form onSubmit={handleSubmit} className="login-form">
           <Form.Item
-            // name="email"
             validateStatus={validateField("email", touched, errors)}
-            // help={!touched.email ? "" : errors.email}
+            help={!touched.email ? "" : errors.email}
             hasFeedback
           >
             <Input
               id="email"
               prefix={<MailOutlined />}
-              placeholder="E-mail"
+              size="large"
+              placeholder="E-Mail"
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </Form.Item>
           <Form.Item
-            // name="password"
-            // validateStatus={
-            //   !touched.password ? "" : errors.password ? "error" : "success"
-            // }
-            // // help={!touched.password ? "" : errors.password}
+            validateStatus={validateField("password", touched, errors)}
+            help={!touched.password ? "" : errors.password}
             hasFeedback
           >
             <Input
               id="password"
               prefix={<LockOutlined />}
+              size="large"
+              type="password"
               placeholder="Пароль"
               value={values.password}
               onChange={handleChange}
@@ -73,19 +58,20 @@ const LoginForm = (props) => {
             />
           </Form.Item>
           <Form.Item>
-            {!isSubmitting && !isValid && <span>Помилка!</span>}
+            {isSubmitting && !isValid && <span>Помилка!</span>}
             <Button
-              type="primary"
-              htmlType="submit"
               className="login-form-button"
+              type="primary"
               size="large"
+              disabled={isSubmitting}
+              onClick={handleSubmit}
             >
               Ввійти в аккаунт
             </Button>
-            <Link className="auth__register-link" to="/register">
-              Зареєструватися
-            </Link>
           </Form.Item>
+          <Link className="auth__register-link" to="/registration">
+            Зареєструватися
+          </Link>
         </Form>
       </Wrapper>
     </div>

@@ -1,38 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { Form, Input, Tooltip } from "antd";
-import {
-  MailOutlined,
-  UserOutlined,
-  LockOutlined,
-  QuestionCircleOutlined,
-  InfoCircleTwoTone,
-} from "@ant-design/icons";
+import { Form } from "antd";
+import { MailOutlined, UserOutlined, LockOutlined } from "@ant-design/icons";
 
-import { withFormik } from "formik";
+import { Wrapper, Button, FormField } from "components";
 
-import { Wrapper, Button } from "components";
-
-const success = true;
 
 const RegisterForm = (props) => {
   const {
     values,
     touched,
     errors,
-    isSubmitting,
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
-    dirty,
   } = props;
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-
   return (
     <div>
       <div className="auth__title">
@@ -40,99 +23,52 @@ const RegisterForm = (props) => {
         <p>Для входу в чат Вам потрібно зареєструватись</p>
       </div>
       <Wrapper>
-        {success ? (
-          <Form
-            onSubmit={handleSubmit}
-            name="normal_login"
-            className="login-form"
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-          >
-            <Form.Item
+          <Form onSubmit={handleSubmit} className="login-form">
+            <FormField
               name="email"
-              validateStatus={
-                !touched.email ? "" : errors.email ? "error" : "success"
-              }
-              // rules={[
-              //   {
-              //     type: "email",
-              //     message: "The input is not valid E-mail!",
-              //   },
-              //   {
-              //     required: true,
-              //     message: "Please input your E-mail!",
-              //   },
-              // ]}
-              // help="qweqw"
-              hasFeedback
-            >
-              <Input
-                id="email"
-                prefix={<MailOutlined />}
-                placeholder="E-mail"
-                value={values.email}
-                onChange={handleChange}
-              />
-            </Form.Item>
-            <Form.Item
-              name="nickname"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your nickname!",
-                  whitespace: true,
-                },
-              ]}
-            >
-              <Input prefix={<UserOutlined />} placeholder="Login" />
-            </Form.Item>
+              icon={<MailOutlined />}
+              placeholder="E-mail"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
 
-            <Form.Item
+            <FormField
+              name="fullname"
+              icon={<UserOutlined />}
+              placeholder="Ваше ім'я та прізвище"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
+
+            <FormField
               name="password"
-              validateStatus={
-                !touched.password ? "" : errors.password ? "error" : "success"
-              }
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
-              hasFeedback
-            >
-              <Input.Password prefix={<LockOutlined />} placeholder="Пароль" />
-            </Form.Item>
+              type="password"
+              icon={<LockOutlined />}
+              placeholder="Пароль"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
 
-            <Form.Item
+            <FormField
               name="confirm"
-              validateStatus={
-                !touched.password ? "" : errors.password ? "error" : "success"
-              }
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(rule, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-
-                    return Promise.reject("Пароль невірний");
-                  },
-                }),
-              ]}
-            >
-              <Input.Password
-                prefix={<QuestionCircleOutlined />}
-                placeholder="Повторіть пароль"
-              />
-            </Form.Item>
+              type="password"
+              icon={<LockOutlined />}
+              placeholder="Повторіть пароль"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
 
             <Form.Item>
               <Button
@@ -149,16 +85,6 @@ const RegisterForm = (props) => {
               </Link>
             </Form.Item>
           </Form>
-        ) : (
-          <div className="auth__success-block">
-            <InfoCircleTwoTone style={{ fontSize: "50px" }} />
-            <h3>Підтвердіть реєстрацію</h3>
-            <p>
-              На Ваш e-mail відправлено лист з посиланням на підтвердження
-              реєстрації
-            </p>
-          </div>
-        )}
       </Wrapper>
     </div>
   );

@@ -4,19 +4,6 @@ import { connect } from "react-redux";
 import { messagesActions } from "redux/actions";
 import { Messages as BaseMessages } from "components";
 
-// class Messages extends React.Component {
-//     componentDidUpdate(prevProps) {
-//         const { fetchMessages, currentDialogId } = this.props;
-//         if(prevProps.currentDialogId !== this.props.currentDialogId) {
-//             fetchMessages(currentDialogId);
-//         }
-//     }
-//
-//     render() {
-//         const {items} = this.props;
-//         return <BaseMessages items={items}/>
-//     }
-// }
 
 const Messages = ({items, currentDialogId, fetchMessages, isLoading}) => {
   const messagesRef = useRef(null);

@@ -34,7 +34,7 @@ const ChatInput = () => {
         size="large"
         placeholder="Написати повідомлення..."
         allowClear
-        onSearch={(value) => console.log(value)}
+        // onSearch={(value) => console.log(value)}
         // style={{ width: 100%, margin: "0 10px" }}
       />
       <div className="chat-input__actions">

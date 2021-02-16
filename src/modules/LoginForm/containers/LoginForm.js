@@ -1,8 +1,12 @@
 import { withFormik } from "formik";
 import LoginForm from "../components/LoginForm";
 import validateForm from "utils/validation";
+import { userActions } from "redux/actions";
+import store from "redux/store";
 
-export default withFormik({
+import { withRouter } from "react-router-dom";
+
+const LoginFormContainer = withFormik({
   enableReinitialize: true,
 
   mapPropsToValues: () => ({
@@ -13,17 +17,26 @@ export default withFormik({
   validate: (values) => {
     let errors = {};
 
-    validateForm({ isAuth: false, values, errors });
+    validateForm({ isAuth: true, values, errors });
 
     return errors;
   },
 
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: (values, { setSubmitting, props }) => {
+    store
+      .dispatch(userActions.fetchUserLogin(values))
+      .then(({ status }) => {
+        if (status === "success") {
+          props.history.push("/");
+        }
+        setSubmitting(false);
+      })
+      .catch(() => {
+        setSubmitting(false);
+      });
   },
 
   displayName: "Login Form", // helps with React DevTools
 })(LoginForm);
+
+export default withRouter(LoginFormContainer);

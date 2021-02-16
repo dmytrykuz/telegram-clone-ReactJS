@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Emoji } from "emoji-mart";
 
 import waveSvg from "assets/svg/wave.svg";
 import playSvg from "assets/svg/play.svg";
