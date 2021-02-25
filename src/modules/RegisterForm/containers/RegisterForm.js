@@ -12,7 +12,7 @@ const RegistrationFormContainer = withFormik({
     fullname: "",
     password: "",
     confirm: "",
-  }),
+  }), 
 
   validate: (values) => {
     let errors = {};

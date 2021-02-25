@@ -5,58 +5,60 @@ import { format, isToday, isThisYear } from "date-fns";
 
 import "./DialogItem.sass";
 
-const getMessageTime = (created_at) => {
-  if (isToday(new Date(created_at))) {
-    return format(new Date(created_at), "hh:mm");
-  } else if (isThisYear(new Date(created_at))) {
-    return format(new Date(created_at), "dd LLL");
+const getMessageTime = (createdAt) => {
+  if (isToday(new Date(createdAt))) {
+    return format(new Date(createdAt), "HH:mm");
+  } else if (isThisYear(new Date(createdAt))) {
+    return format(new Date(createdAt), "dd LLL");
   } else {
-    return format(new Date(created_at), "dd.MM.uuuu");
+    return format(new Date(createdAt), "dd.MM.uuuu");
   }
 };
+
 
 const DialogItem = ({
   _id,
   user,
   text,
   isReaded,
-  unreaded,
+  read,
   created_at,
   isMe,
   onSelect,
   currentDialogId,
+  lastMessage
 }) => {
   return (
     <div
       className={classNames("dialogs__item", {
-        "dialogs__item--online": user.isOnline,
+        "dialogs__item--online": lastMessage.user.isOnline,
         "dialogs__item--selected": currentDialogId === _id,
       })}
       onClick={onSelect.bind(this, _id)}
     >
       <div className="dialogs__item-avatar">
-        <Avatar user={user} />
+        <Avatar user={lastMessage.user} />
       </div>
       <div className="dialogs__item-info">
         <div className="dialogs__item-info-top">
-          <b>{user.fullname}</b>
+          <b>{lastMessage.user.fullname}</b>
           <span>
-            {getMessageTime(created_at)}
+            {getMessageTime(lastMessage.createdAt)}
             {/* <Time date={created_at} /> */}
           </span>
         </div>
         <div className="dialogs__item-info-bottom">
-          <p>{text}</p>
+          <p>{lastMessage.text}</p>
           {isMe && <ReadedStatus isMe={true} isReaded={isReaded} />}
-          {unreaded > 0 && (
+          {lastMessage.read > 0 && (
             <div
               className={classNames("dialogs__item-info-bottom-count", {
-                "dialogs__item-info-bottom-count--medium": unreaded > 9,
-                "dialogs__item-info-bottom-count--large": unreaded > 99,
-                "dialogs__item-info-bottom-count--max": unreaded > 999,
+                "dialogs__item-info-bottom-count--medium": read > 9,
+                "dialogs__item-info-bottom-count--large": read > 99,
+                "dialogs__item-info-bottom-count--max": read > 999,
               })}
             >
-              {unreaded > 999 ? "+999" : unreaded}
+              {read > 999 ? "+999" : read}
             </div>
           )}
         </div>

@@ -5,34 +5,39 @@ import { dialogsActions } from "redux/actions";
 import { DialogsList as BaseDialogs } from "components";
 
 const DialogsList = ({
-  fetchAllDialogsId,
-  currentDialogId,
-  setCurrentDialogId,
-  items,
-  userId,
-}) => {
+                       fetchAllDialogsId,
+                       currentDialogId,
+                       setCurrentDialogId,
+                       items,
+                       userId,
+                     }) => {
   const [inputValue, setValue] = useState("");
   const [filtred, setFiltredItems] = useState(Array.from(items));
 
-  const onChangeInput = (value) => {
+  const onChangeInput = (value = "") => {
     setFiltredItems(
-      items.filter((dialog) => 
-      dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 || 
-      dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0,
+      items.filter(
+        (dialog) =>
+          dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+          0 ||
+          dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+          0
       )
     );
     setValue(value);
   };
 
-  // const onSelectDialog = () => {};
+  window.fetchAllDialogsId = fetchAllDialogsId;
 
-  // useEffect(() => {
-  //   if (!items.length) {
-  //     fetchAllDialogsId();
-  //   } else {
-  //     setFiltredItems(items);
-  //   }
-  // }, [items]);
+  useEffect(() => {
+    if (items.length) {
+      onChangeInput();
+    }
+  }, [items]);
+
+  useEffect(() => {
+    fetchAllDialogsId();
+  }, []);
 
   return (
     <BaseDialogs
@@ -46,4 +51,4 @@ const DialogsList = ({
   );
 };
 
-export default connect(({ dialogs }) => dialogs, dialogsActions)(DialogsList);
+export default connect(({dialogs}) => dialogs, dialogsActions)(DialogsList);

@@ -46,7 +46,18 @@ const CheckEmail = ({ location, history }) => {
         <Result
           status={info.status}
           title={info.message}
-          extra={info.status === "success" && verified && <Button type="primary" size="large" onClick={() => history.push("/login")}>Ввійти</Button>}
+          extra={
+            info.status === "success" &&
+            verified && (
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => history.push("/login")}
+              >
+                Ввійти
+              </Button>
+            )
+          }
         />
       </div>
     </Wrapper>

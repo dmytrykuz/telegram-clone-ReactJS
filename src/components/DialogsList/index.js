@@ -28,8 +28,7 @@ const DialogsList = ({
         orderBy(items, ["created_at"], ["desc"]).map((item) => (
           <DialogItem
             onSelect={onSelectDialog}
-            key={item._id}
-            isMe={item.user._id === userId}
+            isMe={item.author._id === userId}
             currentDialogId={currentDialogId}
             {...item}
           />
