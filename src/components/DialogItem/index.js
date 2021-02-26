@@ -26,18 +26,19 @@ const DialogItem = ({
   isMe,
   onSelect,
   currentDialogId,
-  lastMessage
+  lastMessage,
+  partner
 }) => {
   return (
     <div
       className={classNames("dialogs__item", {
-        "dialogs__item--online": lastMessage.user.isOnline,
+        "dialogs__item--online": partner.isOnline,
         "dialogs__item--selected": currentDialogId === _id,
       })}
       onClick={onSelect.bind(this, _id)}
     >
       <div className="dialogs__item-avatar">
-        <Avatar user={lastMessage.user} />
+        <Avatar user={partner} />
       </div>
       <div className="dialogs__item-info">
         <div className="dialogs__item-info-top">
