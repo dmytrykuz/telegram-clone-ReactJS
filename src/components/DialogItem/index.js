@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { ReadedStatus, Avatar } from "../";
 import { format, isToday, isThisYear } from "date-fns";
+import { Link } from "react-router-dom";
 
 import "./DialogItem.sass";
 
@@ -15,7 +16,6 @@ const getMessageTime = (createdAt) => {
   }
 };
 
-
 const DialogItem = ({
   _id,
   user,
@@ -27,44 +27,45 @@ const DialogItem = ({
   onSelect,
   currentDialogId,
   lastMessage,
-  partner
+  partner,
 }) => {
   return (
-    <div
-      className={classNames("dialogs__item", {
-        "dialogs__item--online": partner.isOnline,
-        "dialogs__item--selected": currentDialogId === _id,
-      })}
-      onClick={onSelect.bind(this, _id)}
-    >
-      <div className="dialogs__item-avatar">
-        <Avatar user={partner} />
-      </div>
-      <div className="dialogs__item-info">
-        <div className="dialogs__item-info-top">
-          <b>{lastMessage.user.fullname}</b>
-          <span>
-            {getMessageTime(lastMessage.createdAt)}
-            {/* <Time date={created_at} /> */}
-          </span>
+    <Link to={`/dialog/${_id}`}>
+      <div
+        className={classNames("dialogs__item", {
+          "dialogs__item--online": partner.isOnline,
+          "dialogs__item--selected": currentDialogId === _id,
+        })}
+        onClick={onSelect.bind(this, _id)}
+      >
+        <div className="dialogs__item-avatar">
+          <Avatar user={partner} />
         </div>
-        <div className="dialogs__item-info-bottom">
-          <p>{lastMessage.text}</p>
-          {isMe && <ReadedStatus isMe={true} isReaded={isReaded} />}
-          {lastMessage.read > 0 && (
-            <div
-              className={classNames("dialogs__item-info-bottom-count", {
-                "dialogs__item-info-bottom-count--medium": read > 9,
-                "dialogs__item-info-bottom-count--large": read > 99,
-                "dialogs__item-info-bottom-count--max": read > 999,
-              })}
-            >
-              {read > 999 ? "+999" : read}
-            </div>
-          )}
+        <div className="dialogs__item-info">
+          <div className="dialogs__item-info-top">
+            <b>{partner.fullname}</b>
+            <span>
+              {getMessageTime(lastMessage.createdAt)}
+            </span>
+          </div>
+          <div className="dialogs__item-info-bottom">
+            <p>{lastMessage.text}</p>
+            {isMe && <ReadedStatus isMe={true} isReaded={isReaded} />}
+            {lastMessage.read > 0 && (
+              <div
+                className={classNames("dialogs__item-info-bottom-count", {
+                  "dialogs__item-info-bottom-count--medium": read > 9,
+                  "dialogs__item-info-bottom-count--large": read > 99,
+                  "dialogs__item-info-bottom-count--max": read > 999,
+                })}
+              >
+                {read > 999 ? "+999" : read}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -13,7 +13,7 @@ const Avatar = ({ user }) => {
       />
     );
   } else {
-    const { color, colorLighten } = generateAvatar(user._id);
+    const { color, colorLighten } = generateAvatar(user.id);
     const userInitials = user.fullname[0];
 
     return (
