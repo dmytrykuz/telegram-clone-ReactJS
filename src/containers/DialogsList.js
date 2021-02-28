@@ -37,13 +37,11 @@ const DialogsList = ({
 
   useEffect(() => {
     fetchAllDialogsId();
-  }, []);
 
-  useEffect(() => {
-    socket.on("SERVER:CREATE_DIALOG", (data) => {
-      console.log(data);
-      fetchAllDialogsId();
-    });
+    socket.on("SERVER:CREATE_DIALOG", fetchAllDialogsId);
+    return () => {
+      socket.removeListener("SERVER:CREATE_DIALOG", fetchAllDialogsId);
+    };
   }, []);
 
   return (

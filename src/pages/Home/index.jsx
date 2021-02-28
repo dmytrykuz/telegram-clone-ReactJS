@@ -1,11 +1,6 @@
 import React from "react";
-import { Status, ChatInput } from "components";
-import { DialogsList, Messages } from "containers";
-import {
-  TeamOutlined,
-  FormOutlined,
-  EllipsisOutlined,
-} from "@ant-design/icons";
+import { DialogsList, Messages, ChatInput, ChatHeader } from "containers";
+import { TeamOutlined, FormOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 import dialogsJSON from "./../../dialogs.json";
@@ -30,19 +25,7 @@ const Home = (props) => {
           </div>
         </div>
         <div className="chat__dialog">
-          <div className="chat__dialog-header">
-            <div></div>
-            <div className="chat__dialog-header-center">
-              <b className="chat__dialog-header-username">Ilon Mask</b>
-              <div className="chat__dialog-header-status">
-                <Status online={true} />
-              </div>
-            </div>
-            <Button
-              type="link"
-              icon={<EllipsisOutlined style={{ fontSize: "22px" }} />}
-            />
-          </div>
+          <ChatHeader />
           <div className="chat__dialog-messages">
             <Messages />
           </div>

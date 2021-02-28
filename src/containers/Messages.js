@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
-
 import { messagesActions } from "redux/actions";
 import socket from "core/socket";
 import { Messages as BaseMessages } from "components";
 
-const Messages = ({ items, currentDialogId, fetchMessages, addMessage, isLoading }) => {
+const Messages = ({
+  items,
+  currentDialogId,
+  fetchMessages,
+  addMessage,
+  user,
+  isLoading,
+}) => {
   const messagesRef = useRef(null);
 
   const onNewMessage = (data) => {
@@ -28,15 +34,21 @@ const Messages = ({ items, currentDialogId, fetchMessages, addMessage, isLoading
   }, [items]);
 
   return (
-    <BaseMessages blockRef={messagesRef} items={items} isLoading={isLoading} />
+    <BaseMessages
+      user={user}
+      blockRef={messagesRef}
+      items={items}
+      isLoading={isLoading}
+    />
   );
 };
 
 export default connect(
-  ({ dialogs, messages }) => ({
+  ({ dialogs, messages, user }) => ({
     currentDialogId: dialogs.currentDialogId,
     items: messages.items,
     isLoading: messages.isLoading,
+    user: user.data,
   }),
   messagesActions
 )(Messages);

@@ -7,8 +7,8 @@ export { default as DialogItem } from "./DialogItem";
 export { default as ReadedStatus } from "./ReadedStatus";
 export { default as DialogsList } from "./DialogsList";
 export { default as Avatar } from "./Avatar";
-export { default as Status } from "./Status";
 export { default as ChatInput } from "./ChatInput";
 export { default as FormField } from "./FormField";
 export { default as CheckEmail } from "./CheckEmail";
+export { default as ChatHeader } from "./ChatHeader";
 

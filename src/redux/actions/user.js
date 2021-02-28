@@ -50,34 +50,10 @@ const Actions = {
         });
       });
   },
-
-  fetchUserRegistration: (userData) => (dispatch) => {
-    return userApi
-      .registration(userData)
-      .then(({ data }) => {
-        console.log(data)
-        // const { token } = data;
-        // notification({
-        //   title: "Авторизація пройшла успішно!",
-        //   text: "З поверненням)",
-        //   type: "success",
-        // });
-        // window.axios.defaults.headers.common["token"] = token;
-        // window.localStorage["token"] = token;
-        // dispatch(Actions.fetchUserData());
-        // dispatch(Actions.setIsAuth(true));
-        // return data;
-      })
-      .catch(({ response }) => {
-        // notification({
-        //   title: "Помилка при реєстрації!",
-        //   text: "Неправильний логін або пароль",
-        //   type: "error",
-        // });
-      });
+  
+  fetchUserRegistration: (userData) => () => {
+    return userApi.registration(userData);
   },
-
-
 };
 
 export default Actions;

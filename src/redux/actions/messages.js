@@ -4,7 +4,7 @@ const Actions = {
   setMessages: (items) => ({
     type: "MESSAGES:SET_ITEMS",
     payload: items,
-  }), 
+  }),
   addMessage: (message) => (dispatch, getState) => {
     const { dialogs } = getState();
     const { currentDialogId } = dialogs;
@@ -15,6 +15,9 @@ const Actions = {
         payload: message,
       });
     }
+  },
+  fetchSendMessages: (text, dialogId) => (dispatch) => {
+    messagesApi.send(text, dialogId);
   },
   setIsLoading: (bool) => ({
     type: "MESSAGES:SET_IS_LOADING",
