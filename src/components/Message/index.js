@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Time, ReadedStatus, Avatar } from "../";
 import { convertCurrentTime } from "utils/helpers";
-import { EllipsisOutlined } from "@ant-design/icons";
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown } from "antd";
+import reactStringReplace from "react-string-replace";
+import { Emoji } from "emoji-mart";
 
 import waveSvg from "assets/svg/wave.svg";
 import playSvg from "assets/svg/play.svg";
@@ -133,7 +134,13 @@ const Message = ({
               arrow
             >
               <div className="message__bubble">
-                {text && <p className="message__text">{text}</p>}
+                {text && (
+                  <p className="message__text">
+                    {reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                      <Emoji emoji={match} set="apple"/>
+                    ))}
+                  </p>
+                )}
                 {isTyping && (
                   <div className="message__typing">
                     <span />

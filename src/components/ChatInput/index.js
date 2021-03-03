@@ -12,6 +12,7 @@ import { Picker } from "emoji-mart";
 import "./ChatInput.sass";
 
 const ChatInput = (props) => {
+  console.log(props)
   const [value, setValue] = useState("");
   const [emojiPickerVisible, setEmojiPicker] = useState("");
   const { onSendMessage, currentDialogId } = props;
@@ -27,12 +28,20 @@ const ChatInput = (props) => {
     }
   };
 
+  const setEmojiToInput = (obj) => {
+    const { native } = obj;
+    setValue(value + " " + native);
+  };
+
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
         {emojiPickerVisible && (
           <div className="chat-input__emoji-picker">
-            <Picker set="apple" />
+            <Picker
+              onSelect={(emojiTag) => setEmojiToInput(emojiTag)}
+              set="apple"
+            />
           </div>
         )}
         <Button
@@ -48,6 +57,7 @@ const ChatInput = (props) => {
         placeholder="Написати повідомлення..."
         value={value}
         allowClear={true}
+        // autoSize={{minRows: 1, maxRows: 6}}
         // onSearch={(value) => console.log(value)}
         // style={{ width: 100%, margin: "0 10px" }}
       />
@@ -65,7 +75,7 @@ const ChatInput = (props) => {
           <Button type="link" icon={<LinkOutlined />} />
         </UploadField>
         {value ? (
-          <Button type="link" icon={<SendOutlined />} />
+          <Button onClick={onSendMessage} type="link" icon={<SendOutlined />} />
         ) : (
           <Button type="link" icon={<AudioOutlined />} />
         )}
