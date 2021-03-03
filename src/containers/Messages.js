@@ -11,7 +11,10 @@ const Messages = ({
   addMessage,
   user,
   isLoading,
+  deleteMessageById,
 }) => {
+  console.log("user = ", user);
+  console.log("Items = ", items);
   const messagesRef = useRef(null);
 
   const onNewMessage = (data) => {
@@ -32,13 +35,14 @@ const Messages = ({
   useEffect(() => {
     messagesRef.current.scrollTo(0, 9999999);
   }, [items]);
-
+  
   return (
     <BaseMessages
       user={user}
       blockRef={messagesRef}
       items={items}
       isLoading={isLoading}
+      onDeleteMessage={deleteMessageById}
     />
   );
 };

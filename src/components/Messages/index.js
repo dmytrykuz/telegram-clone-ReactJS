@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Message } from "../";
 import "./Messages.sass";
 
-const Messages = ({ blockRef, isLoading, items, user }) => {
+const Messages = ({ onDeleteMessage, blockRef, isLoading, items, user }) => {
   return (
     <div
       ref={blockRef}
@@ -22,9 +22,10 @@ const Messages = ({ blockRef, isLoading, items, user }) => {
                 key={item._id}
                 {...item}
                 isMe={user._id === item.user._id}
+                onDeleteMessage={onDeleteMessage.bind(this, item._id)}
               />
             ))}
-          </div> 
+          </div>
         ) : (
           <Empty description="Немає повідомлень" />
         )

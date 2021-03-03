@@ -11,4 +11,4 @@ export { default as ChatInput } from "./ChatInput";
 export { default as FormField } from "./FormField";
 export { default as CheckEmail } from "./CheckEmail";
 export { default as ChatHeader } from "./ChatHeader";
-
+export { default as Sidebar } from "./Sidebar";

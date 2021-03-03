@@ -1,25 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { Time, ReadedStatus, Avatar } from "../";
+import { convertCurrentTime } from "utils/helpers";
+import { EllipsisOutlined } from "@ant-design/icons";
+import { Menu, Dropdown, Button } from "antd";
 
 import waveSvg from "assets/svg/wave.svg";
 import playSvg from "assets/svg/play.svg";
 import pauseSvg from "assets/svg/pause.svg";
 
-import { Time, ReadedStatus, Avatar } from "../";
-import { convertCurrentTime } from "utils/helpers";
-
 import "./Message.sass";
 
-
-const MessageAudio = ({audioSrc}) => {
+const MessageAudio = ({ audioSrc }) => {
   const audioElement = useRef(null);
   const [isPlay, setIsPlay] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
   const togglePlay = () => {
-    if(!isPlay) {
+    if (!isPlay) {
       audioElement.current.play();
     } else {
       audioElement.current.pause();
@@ -60,23 +60,23 @@ const MessageAudio = ({audioSrc}) => {
 
   return (
     <div className="message__audio">
-      <audio ref={audioElement} src={audioSrc} preload="auto"/>
+      <audio ref={audioElement} src={audioSrc} preload="auto" />
       <div
         className="message__audio-progress"
-        style={{width: progress + "%"}}
+        style={{ width: progress + "%" }}
       ></div>
       <div className="message__audio-info">
         <div className="message__audio-btn">
           <button onClick={togglePlay}>
             {isPlay ? (
-              <img src={pauseSvg} alt="Pause svg"/>
+              <img src={pauseSvg} alt="Pause svg" />
             ) : (
-              <img src={playSvg} alt="Play svg"/>
+              <img src={playSvg} alt="Play svg" />
             )}
           </button>
         </div>
         <div className="message__audio-wave">
-          <img src={waveSvg} alt="Wave svg"/>
+          <img src={waveSvg} alt="Wave svg" />
         </div>
         <span className="message__audio-duration">
           {convertCurrentTime(currentTime)}
@@ -96,7 +96,18 @@ const Message = ({
   isTyping,
   attachments,
   audio,
+  onDeleteMessage,
 }) => {
+  const dropDownMenu = (
+    <Menu>
+      <Menu.Item onClick={() => alert("TEST")}>Відповісти</Menu.Item>
+      <Menu.Item>Копіювати текст</Menu.Item>
+      <Menu.Item>Переслати повідомлення</Menu.Item>
+      <Menu.Item>Вибрати повідомлення</Menu.Item>
+      <Menu.Item onClick={onDeleteMessage}>Видалити</Menu.Item>
+    </Menu>
+  );
+
   return (
     <div
       className={classNames("message", {
@@ -108,37 +119,44 @@ const Message = ({
     >
       <div className="message__content">
         <div className="message__readed-status">
-          <ReadedStatus isMe={isMe} isReaded={isReaded}/>
+          <ReadedStatus isMe={isMe} isReaded={isReaded} />
         </div>
         <div className="message__avatar">
-          <Avatar user={user}/>
+          <Avatar user={user} />
         </div>
         <div className="message__info">
           {(audio || text || isTyping) && (
-            <div className="message__bubble">
-              {text && <p className="message__text">{text}</p>}
-              {isTyping && (
-                <div className="message__typing">
-                  <span/>
-                  <span/>
-                  <span/>
-                </div>
-              )}
-              {audio && <MessageAudio audioSrc={audio}/>}
-            </div>
+            <Dropdown
+              overlay={dropDownMenu}
+              trigger={["click"]}
+              placement="bottomLeft"
+              arrow
+            >
+              <div className="message__bubble">
+                {text && <p className="message__text">{text}</p>}
+                {isTyping && (
+                  <div className="message__typing">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                )}
+                {audio && <MessageAudio audioSrc={audio} />}
+              </div>
+            </Dropdown>
           )}
           {attachments && (
             <div className="message__attachments">
               {attachments.map((item, index) => (
                 <div key={index} className="message__attachments-item">
-                  <img src={item.url} alt={item.filename}/>
+                  <img src={item.url} alt={item.filename} />
                 </div>
               ))}
             </div>
           )}
           {date && (
             <span className="message__date">
-              <Time date={date}/>
+              <Time date={date} />
             </span>
           )}
         </div>
