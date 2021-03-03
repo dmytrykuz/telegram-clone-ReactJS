@@ -13,8 +13,6 @@ const Messages = ({
   isLoading,
   deleteMessageById,
 }) => {
-  console.log("user = ", user);
-  console.log("Items = ", items);
   const messagesRef = useRef(null);
 
   const onNewMessage = (data) => {
