@@ -3,15 +3,17 @@ import { connect } from "react-redux";
 import { messagesActions } from "redux/actions";
 import socket from "core/socket";
 import { Messages as BaseMessages } from "components";
+import { Empty } from "antd";
 
 const Messages = ({
   items,
-  currentDialogId,
-  fetchMessages,
   addMessage,
+  fetchMessages,
+  deleteMessageById,
+  currentDialogId,
   user,
   isLoading,
-  deleteMessageById,
+  lastMessage
 }) => {
   const messagesRef = useRef(null);
 
@@ -21,6 +23,7 @@ const Messages = ({
 
   useEffect(() => {
     if (currentDialogId) {
+      console.log("1111");
       fetchMessages(currentDialogId);
     }
     socket.on("SERVER:ADD_MESSAGE", onNewMessage);
@@ -31,9 +34,17 @@ const Messages = ({
   }, [currentDialogId]);
 
   useEffect(() => {
-    messagesRef.current.scrollTo(0, 9999999);
+    if(currentDialogId) {
+      messagesRef.current.scrollTo(0, 9999999);
+    }
+    
   }, [items]);
-  
+
+  if (!currentDialogId) {
+    return <Empty description="Відкрийте діалог" />;
+  }
+
+
   return (
     <BaseMessages
       user={user}
@@ -41,6 +52,7 @@ const Messages = ({
       items={items}
       isLoading={isLoading && !user}
       onDeleteMessage={deleteMessageById}
+      currentDialogId={currentDialogId}
     />
   );
 };

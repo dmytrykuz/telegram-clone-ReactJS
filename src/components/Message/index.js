@@ -93,7 +93,7 @@ const Message = ({
   text,
   date,
   isMe,
-  isReaded,
+  readed,
   isTyping,
   attachments,
   audio,
@@ -120,7 +120,7 @@ const Message = ({
     >
       <div className="message__content">
         <div className="message__readed-status">
-          <ReadedStatus isMe={isMe} isReaded={isReaded} />
+          <ReadedStatus isMe={isMe} isReaded={readed} />
         </div>
         <div className="message__avatar">
           <Avatar user={user} />
@@ -137,7 +137,7 @@ const Message = ({
                 {text && (
                   <p className="message__text">
                     {reactStringReplace(text, /:(.+?):/g, (match, i) => (
-                      <Emoji emoji={match} set="apple"/>
+                      <Emoji emoji={match} set="apple" />
                     ))}
                   </p>
                 )}

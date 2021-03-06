@@ -12,7 +12,6 @@ const DialogsList = ({
   onSearch,
   inputValue,
   currentDialogId,
-  onSelectDialog,
 }) => {
   return (
     <div className="dialogs-list">
@@ -21,13 +20,11 @@ const DialogsList = ({
           placeholder="Пошук"
           onChange={(e) => onSearch(e.target.value)}
           value={inputValue}
-          // style={{ width: 100%, margin: "0 10px" }}
         />
       </div>
       {items.length ? (
         orderBy(items, ["created_at"], ["desc"]).map((item) => (
           <DialogItem
-            onSelect={onSelectDialog}
             isMe={item.author._id === userId}
             currentDialogId={currentDialogId}
             {...item}
@@ -36,7 +33,7 @@ const DialogsList = ({
       ) : (
         <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description="Повідомлень не знайдено"
+          description="Діалогів не знайдено"
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   SmileOutlined,
   LinkOutlined,
@@ -11,39 +11,27 @@ import { Picker } from "emoji-mart";
 
 import "./ChatInput.sass";
 
-const ChatInput = (props) => {
-  console.log(props)
-  const [value, setValue] = useState("");
-  const [emojiPickerVisible, setEmojiPicker] = useState("");
-  const { onSendMessage, currentDialogId } = props;
-
-  const toggleEmojiPicker = () => {
-    setEmojiPicker(!emojiPickerVisible);
-  };
-
-  const handleSendMessage = (e) => {
-    if (e.keyCode === 13) {
-      onSendMessage(value, currentDialogId);
-      setValue("");
-    }
-  };
-
-  const setEmojiToInput = (obj) => {
-    const { native } = obj;
-    setValue(value + " " + native);
-  };
-
+const ChatInput = ({
+  value,
+  handleSendMessage,
+  toggleEmojiPicker,
+  setEmojiToInput,
+  emojiPickerVisible,
+  setValue,
+  sendMessage,
+}) => {
   return (
     <div className="chat-input">
       <div className="chat-input__smile-btn">
-        {emojiPickerVisible && (
-          <div className="chat-input__emoji-picker">
+        <div className="chat-input__emoji-picker">
+          {emojiPickerVisible && (
             <Picker
+              ref={(ref) => console.log(ref)}
               onSelect={(emojiTag) => setEmojiToInput(emojiTag)}
               set="apple"
             />
-          </div>
-        )}
+          )}
+        </div>
         <Button
           onClick={toggleEmojiPicker}
           type="link"
@@ -75,7 +63,11 @@ const ChatInput = (props) => {
           <Button type="link" icon={<LinkOutlined />} />
         </UploadField>
         {value ? (
-          <Button onClick={onSendMessage} type="link" icon={<SendOutlined />} />
+          <Button
+            onClick={sendMessage}
+            type="link"
+            icon={<SendOutlined />}
+          />
         ) : (
           <Button type="link" icon={<AudioOutlined />} />
         )}

@@ -7,7 +7,6 @@ import { DialogsList as BaseDialogs } from "components";
 const DialogsList = ({
   fetchAllDialogsId,
   currentDialogId,
-  setCurrentDialogId,
   items,
   userId,
 }) => {
@@ -39,8 +38,10 @@ const DialogsList = ({
     fetchAllDialogsId();
 
     socket.on("SERVER:CREATE_DIALOG", fetchAllDialogsId);
+    socket.on("SERVER:ADD_MESSAGE", fetchAllDialogsId);
     return () => {
       socket.removeListener("SERVER:CREATE_DIALOG", fetchAllDialogsId);
+      socket.removeListener("SERVER:ADD_MESSAGE", fetchAllDialogsId);
     };
   }, []);
 
@@ -50,7 +51,6 @@ const DialogsList = ({
       items={filtred}
       onSearch={onChangeInput}
       inputValue={inputValue}
-      onSelectDialog={setCurrentDialogId}
       currentDialogId={currentDialogId}
     />
   );

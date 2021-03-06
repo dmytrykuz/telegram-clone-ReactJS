@@ -5,6 +5,7 @@ const Actions = {
     type: "MESSAGES:SET_ITEMS",
     payload: items,
   }),
+
   addMessage: (message) => (dispatch, getState) => {
     const { dialogs } = getState();
     const { currentDialogId } = dialogs;
@@ -16,13 +17,16 @@ const Actions = {
       });
     }
   },
+
   fetchSendMessages: (text, dialogId) => (dispatch) => {
     messagesApi.send(text, dialogId);
   },
+
   setIsLoading: (bool) => ({
     type: "MESSAGES:SET_IS_LOADING",
     payload: bool,
   }),
+
   deleteMessageById: (id) => (dispatch) => {
     if (window.confirm("Ви хочете видалити це повідомлення?")) {
       messagesApi
@@ -38,6 +42,7 @@ const Actions = {
         });
     }
   },
+  
   fetchMessages: (dialogId) => (dispatch) => {
     dispatch(Actions.setIsLoading(true));
     messagesApi
