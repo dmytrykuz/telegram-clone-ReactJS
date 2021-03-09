@@ -154,9 +154,12 @@
   "babel": {
     "presets": [
       "react-app"
-    ]
+    ],
+    "plugins": ["transform-async-to-generator"]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "eslint-plugin-react-hooks": "^1.7.0"
   }
 }

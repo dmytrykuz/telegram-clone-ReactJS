@@ -37,7 +37,6 @@ const Messages = ({
     if(currentDialogId) {
       messagesRef.current.scrollTo(0, 9999999);
     }
-    
   }, [items]);
 
   if (!currentDialogId) {

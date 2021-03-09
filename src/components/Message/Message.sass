@@ -1,5 +1,5 @@
 @import "~styles/_variables"
-    
+
 .message
     $self: &
     display: flex
@@ -10,8 +10,8 @@
         flex-direction: row
         position: relative
 
-    &__avatar 
-        display: flex 
+    &__avatar
+        display: flex
         flex-direction: column-reverse
         .avatar
             height: 34px
@@ -24,41 +24,32 @@
             line-height: 32px
 
     &__bubble
-        background: $blue 
-        border-radius: 12px 12px 12px 0px   
+        background: $blue
+        border-radius: 12px 12px 12px 0px
         padding: 15px
+        // padding-bottom: 6px
         margin-bottom: 2px
         max-width: 480px
 
     &__text
         color: #ffffff
-        font-size: 14px 
+        font-size: 14px
         line-height: 20px
 
     &__date
         font-size: 12px
-        opacity: 0.5 
+        opacity: 0.5
 
-    &__info 
-    
-
-    &__attachments 
-        display: flex 
-        &-item 
-            margin-right: 5px
-            cursor: pointer
-            img 
-                height: 50px
-                width: 50px
-                border-radius: 5px     
+    &__info
+        display: flex
 
     &__readed-status
         position: absolute
         left: -10px
-        bottom: 5px   
+        bottom: 5px
 
     &--isAudio
-        audio 
+        audio
             display: none
         #{$self}__bubble
             position: relative
@@ -66,12 +57,12 @@
             overflow: hidden
 
         #{$self}__audio
-            &-info 
+            &-info
                 position: relative
-                display: flex 
+                display: flex
                 align-items: center
                 justify-content: space-between
-            &-btn 
+            &-btn
                 button
                     height: 28px
                     width: 28px
@@ -79,46 +70,65 @@
                     border: none
                     background: #0f3997
                     cursor: pointer
-                    img 
+                    img
                         height: 11px
-            &-duration 
-                color: #fff 
+            &-duration
+                color: #fff
                 font-weight: 500
                 opacity: .6
                 font-size: 12px
-            &-progress 
+            &-progress
                 position: absolute
                 left: 0
                 top: 0
                 background-color: #418fff
-                height: 100%  
-                transition: width 0.5s ease 
+                height: 100%
+                transition: width 0.5s ease
+
+    &__attachments
+        display: flex
+        order: 1
+        margin: 0 -5px
+        &-item
+            cursor: pointer
+            margin: 0 5px
+            max-width: 150px
+            height: 100%
+            img
+                width: 100%
+                height: 100%
+                border-radius: 5%
+
+    // &--attachments
+    //     #{$self}__bubble
+    //         padding-top: 10px
+    //         .message__text
+    //             margin-bottom: 5px
+
     &--isme
-        display: flex 
+        display: flex
         flex-direction: row-reverse
 
         #{$self}__content
-            display: flex 
+            display: flex
             flex-direction: row-reverse
 
         #{$self}__avatar
             margin-left: 8px
-            img 
+            img
                 margin-left: 10px
                 margin-bottom: 2px
 
-        #{$self}__info 
+        #{$self}__info
             position: relative
-            #{$self}__date 
+            #{$self}__date
                 position: absolute
                 right: 0px
-                     
 
         #{$self}__bubble
             border-radius: 12px 12px 0px 12px
             background: #ffffff
             border: 1px solid #ececec
-
             #{$self}__text
                 color: $black
 
@@ -132,30 +142,30 @@
             margin-right: 8px
             animation: 0.8s typingAnimation infinite ease-out 0.1s
 
-            &:nth-of-type(2) 
+            &:nth-of-type(2)
                 animation: 0.8s typingAnimation infinite ease-out 0.2s
-            
-            &:nth-of-type(3) 
+
+            &:nth-of-type(3)
                 animation: 0.8s typingAnimation infinite ease-out 0.3s
                 margin-right: 0
 
-    @keyframes typingAnimation 
+    @keyframes typingAnimation
         from
             opacity: 0
-        to 
-            opacity: 100   
+        to
+            opacity: 100
 
     &--is-typing
         #{$self}__bubble
-            background: #e5edff 
+            background: #e5edff
             box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04)
-        #{$self}__avatar 
+        #{$self}__avatar
             img
                 margin-bottom: 4px
 
-    &--image 
-        #{$self}__attachments
-            &-item
-                img 
-                    height: 150px
-                    width: 150px
+    // &--image
+    //     #{$self}__attachments
+    //         &-item
+    //             img
+    //                 height: 150px
+    //                 width: 150px

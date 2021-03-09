@@ -8,7 +8,7 @@ import "./Messages.sass";
 
 const Messages = ({ onDeleteMessage, blockRef, isLoading, items, user }) => {
   return (
-    <div
+    <div 
       ref={blockRef}
       className={classNames("messages", { "messages--loading": isLoading })}
     >

@@ -18,8 +18,8 @@ const Actions = {
     }
   },
 
-  fetchSendMessages: (text, dialogId) => (dispatch) => {
-    messagesApi.send(text, dialogId);
+  fetchSendMessages: (text, dialogId, attachments) => (dispatch) => {
+    messagesApi.send(text, dialogId, attachments);
   },
 
   setIsLoading: (bool) => ({

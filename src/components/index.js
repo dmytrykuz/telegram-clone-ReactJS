@@ -12,3 +12,4 @@ export { default as FormField } from "./FormField";
 export { default as CheckEmail } from "./CheckEmail";
 export { default as ChatHeader } from "./ChatHeader";
 export { default as Sidebar } from "./Sidebar";
+export { default as UploadFiles } from "./UploadFiles";

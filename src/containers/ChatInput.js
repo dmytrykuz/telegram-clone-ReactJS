@@ -2,25 +2,26 @@ import React, { useState, useEffect } from "react";
 import { ChatInput as ChatInputBase } from "components";
 import { connect } from "react-redux";
 import { messagesActions } from "redux/actions";
-import { useOutside } from "utils/helpers";
+import { filesApi } from "utils/api";
 
-const ChatInput = ({ fetchSendMessages, onSendMessage, currentDialogId }) => {
+const ChatInput = ({ fetchSendMessages, currentDialogId }) => {
   const [value, setValue] = useState("");
+  const [attachments, setAttachments] = useState([]);
   const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
 
   const sendMessage = () => {
-    fetchSendMessages({
-      text: value,
-      dialogId: currentDialogId,
-    });
+    fetchSendMessages(
+      value,
+      currentDialogId,
+      attachments.map((file) => file.uid)
+    );
     setValue("");
+    setAttachments([]);
   };
-
 
   const handleSendMessage = (e) => {
     if (e.keyCode === 13) {
-      fetchSendMessages(value, currentDialogId);
-      sendMessage(value, currentDialogId);
+      sendMessage();
     }
   };
 
@@ -37,6 +38,43 @@ const ChatInput = ({ fetchSendMessages, onSendMessage, currentDialogId }) => {
     if (element && !element.contains(e.target)) {
       setShowEmojiPicker(false);
     }
+  };
+
+  const onSelectFiles = async (files) => {
+    let uploaded = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const uid = Math.round(Math.random() * 1000);
+
+      uploaded = [
+        ...uploaded,
+        {
+          uid,
+          // file,
+          name: file.name,
+          status: "uploading",
+        },
+      ];
+
+      setAttachments(uploaded);
+
+      await filesApi.uploadAttachments(file).then(({ data }) => {
+        uploaded = uploaded.map((item) => {
+          if (item.uid === uid) {
+            item = {
+              status: "done",
+              uid: data.file._id,
+              name: data.file.filename,
+              url: data.file.url,
+            };
+          }
+          return item;
+        });
+      });
+    }
+
+    setAttachments(uploaded);
   };
 
   useEffect(() => {
@@ -65,6 +103,8 @@ const ChatInput = ({ fetchSendMessages, onSendMessage, currentDialogId }) => {
       setEmojiToInput={setEmojiToInput}
       handleSendMessage={handleSendMessage}
       sendMessage={sendMessage}
+      attachments={attachments}
+      onSelectFiles={onSelectFiles}
     />
   );
 };

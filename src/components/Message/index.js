@@ -115,7 +115,8 @@ const Message = ({
         "message--isme": isMe,
         "message--is-typing": isTyping,
         "message--isAudio": audio,
-        "message--image": attachments && attachments.length === 1,
+        // "message--attachments": attachments && attachments.length === 1 && !text,
+        "message--attachments": attachments,
       })}
     >
       <div className="message__content">
@@ -149,17 +150,17 @@ const Message = ({
                   </div>
                 )}
                 {audio && <MessageAudio audioSrc={audio} />}
+                {attachments && (
+                  <div className="message__attachments">
+                    {attachments.map((item, index) => (
+                      <div key={index} className="message__attachments-item">
+                        <img src={item.url} alt={item.filename} />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </Dropdown>
-          )}
-          {attachments && (
-            <div className="message__attachments">
-              {attachments.map((item, index) => (
-                <div key={index} className="message__attachments-item">
-                  <img src={item.url} alt={item.filename} />
-                </div>
-              ))}
-            </div>
           )}
           {date && (
             <span className="message__date">
